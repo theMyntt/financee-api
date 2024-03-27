@@ -7,7 +7,7 @@ import { SchemaFactory } from "@nestjs/mongoose";
 })
 export class Client {
   @Prop()
-  _id: number;
+  _id: string;
 
   @Prop()
   name: string;
