@@ -1,6 +1,6 @@
 export type ClientDataType = {
-  _id: number;
+  _id: string;
   name: string;
   email: string;
-  phone: string;
+  password: string;
 }
