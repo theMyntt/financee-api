@@ -13,11 +13,16 @@ export class ClientController {
     @Body('email') email: string,
     @Body('password') password: string,
   ) {
-    return this.clientService.setUser({
+    return this.clientService.setClient({
       _id: CreateID(),
       name,
       email,
       password: HashText(password),
     });
+  }
+
+  @Post('get-user')
+  getUser(@Body('email') email: string, @Body('password') password: string) {
+    return this.clientService.getClient(email, HashText(password));
   }
 }

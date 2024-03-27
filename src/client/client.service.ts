@@ -9,11 +9,19 @@ export class ClientService {
     @InjectModel('Client') private readonly clientModel: Model<ClientDataType>,
   ) {}
 
-  async setUser(client: ClientDataType): Promise<string | ClientDataType> {
-    const hasUser = await this.clientModel.findOne({ email: client.email }).exec();
-    if (hasUser) return "Usuário já cadastrado";
+  async setClient(client: ClientDataType): Promise<string | ClientDataType> {
+    try {
+      const hasUser = await this.clientModel.findOne({ email: client.email }).exec();
+      if (hasUser) return "Usuário já cadastrado";
+  
+      new this.clientModel(client).save();
+      return "Usuário cadastrado com sucesso"
+    } catch {
+      return "Não foi possível cadastrar o usuário"
+    }
+  }
 
-    new this.clientModel(client).save();
-    return "Usuário cadastrado com sucesso"
+  async getClient(email: string, password: string): Promise<ClientDataType | string> {
+    return await this.clientModel.findOne({email, password}).exec();
   }
 }
