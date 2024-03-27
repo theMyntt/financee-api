@@ -15,7 +15,7 @@ import { ClientSchema } from './schema/client.schema';
         uri: configService.get<string>('MONGO_URI'), 
       }),
     }),
-    MongooseModule.forFeature([{ name: 'User', schema: ClientSchema }])
+    MongooseModule.forFeature([{ name: 'Client', schema: ClientSchema }])
   ],
   controllers: [ClientController],
   providers: [ClientService],
